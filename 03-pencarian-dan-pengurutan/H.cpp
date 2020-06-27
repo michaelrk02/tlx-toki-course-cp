@@ -1,4 +1,4 @@
-// H - Membeli Beras -- WIP (RTE with 13/100 score)
+// H - Membeli Beras
 #include <iostream>
 #include <vector>
 #include <algorithm>
