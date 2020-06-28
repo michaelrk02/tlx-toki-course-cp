@@ -20,13 +20,6 @@ int main() {
     }
 
     sort(riceData.begin(), riceData.end());
-#ifdef DEBUG
-    for (int i = 0; i < N; i++) {
-        RiceSpec rice = riceData[i];
-        cout << "[" << rice.weight << " " << rice.cost << " (" << rice.eachKgCost << ")" << "]";
-    }
-    cout << endl;
-#endif
 
     double price = 0.0;
     while ((X > 0) && (riceData.size() > 0)) {
