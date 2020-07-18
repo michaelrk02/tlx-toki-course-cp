@@ -119,3 +119,5 @@ int main() {
     return 0;
 }
 
+// For those who didn't solve this problem with the help from finite-state automata,
+//  YOU GUYS ARE REALLY COOL B-)
