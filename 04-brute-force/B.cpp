@@ -40,13 +40,19 @@ bool solve(team_t *t, int N) {
     bool result = false;
 
     for (int i = 0; i < N - 1; i++) {
+        if (result) {
+            break;
+        }
         if (t[i].plays > 0) {
             for (int j = i + 1; j < N ; j++) {
+                if (result) {
+                    break;
+                }
                 if (t[j].plays > 0) {
                     if (!PLAYED(t[i].played, j) && !PLAYED(t[j].played, i)) {
                         team_t *tperm = new team_t[N];
 
-                        if (t[i].points >= 3) {
+                        if (!result && (t[i].points >= 3)) {
                             memcpy(tperm, t, N * sizeof(team_t));
                             tperm[i].plays--;
                             tperm[j].plays--;
@@ -56,7 +62,7 @@ bool solve(team_t *t, int N) {
                             result = result || solve(tperm, N);
                         }
 
-                        if (t[j].points >= 3) {
+                        if (!result && (t[j].points >= 3)) {
                             memcpy(tperm, t, N * sizeof(team_t));
                             tperm[i].plays--;
                             tperm[j].plays--;
@@ -66,7 +72,7 @@ bool solve(team_t *t, int N) {
                             result = result || solve(tperm, N);
                         }
 
-                        if ((t[i].points >= 1) && (t[j].points >= 1)) {
+                        if (!result && (t[i].points >= 1) && (t[j].points >= 1)) {
                             memcpy(tperm, t, N * sizeof(team_t));
                             tperm[i].plays--;
                             tperm[j].plays--;
