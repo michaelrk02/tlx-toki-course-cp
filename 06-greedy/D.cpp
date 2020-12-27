@@ -7,21 +7,20 @@
 
 using namespace std;
 
-typedef long long llong;
 typedef unsigned long long ullong;
 
 #define MIN(a, b) (((a) < (b)) ? (a) : (b))
 
 int main() {
     int N;
-    llong D;
+    ullong D;
     cin >> N >> D;
 
     priority_queue<pair<ullong, ullong>, deque<pair<ullong, ullong>>, greater<pair<ullong, ullong>>> pq;
     for (int i = 0; i < N; i++) {
         ullong H, B;
         cin >> H >> B;
-        pq.push(pair<llong, llong>(H, B));
+        pq.push(pair<ullong, ullong>(H, B));
     }
 
     ullong count = 0;
