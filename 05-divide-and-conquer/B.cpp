@@ -1,3 +1,4 @@
+// B - Pangkat Besar
 #include <cmath>
 #include <iomanip>
 #include <iostream>

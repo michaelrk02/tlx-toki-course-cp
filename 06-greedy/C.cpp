@@ -1,72 +1,32 @@
-#include <deque>
+// C - Perkalian Skalar
+#include <algorithm>
+#include <functional>
 #include <iostream>
-#include <utility>
-#include <queue>
+#include <vector>
 
 using namespace std;
 
 typedef long long llong;
 
-#define ABS(x) (((x) < 0) ? -(x) : (x))
-
 int main() {
     int N;
     cin >> N;
 
-    priority_queue<int, deque<int>, less<int>> v1pos;
-    priority_queue<int, deque<int>, greater<int>> v1neg;
+    vector<llong> v1(N);
     for (int i = 0; i < N; i++) {
-        int x;
-        cin >> x;
-        if (x >= 0) {
-            v1pos.push(x);
-        } else {
-            v1neg.push(x);
-        }
+        cin >> v1[i];
     }
+    sort(v1.begin(), v1.end(), less<llong>());
 
-    priority_queue<int, deque<int>, less<int>> v2pos;
-    priority_queue<int, deque<int>, greater<int>> v2neg;
+    vector<llong> v2(N);
     for (int i = 0; i < N; i++) {
-        int y;
-        cin >> y;
-        if (y >= 0) {
-            v2pos.push(y);
-        } else {
-            v2neg.push(y);
-        }
+        cin >> v2[i];
     }
+    sort(v2.begin(), v2.end(), greater<llong>());
 
     llong product = 0;
-    while (!v1neg.empty() && !v2pos.empty()) {
-        product = product + (llong)v1neg.top() * (llong)v2pos.top();
-        v1neg.pop();
-        v2pos.pop();
-    }
-    while (!v1pos.empty() && !v2neg.empty()) {
-        product = product + (llong)v1pos.top() * (llong)v2neg.top();
-        v1pos.pop();
-        v2neg.pop();
-    }
-
-    priority_queue<int, deque<int>, less<int>> v1left;
-    priority_queue<int, deque<int>, greater<int>> v2left;
-    while (!v1pos.empty() && !v2pos.empty()) {
-        v1left.push(v1pos.top());
-        v2left.push(v2pos.top());
-        v1pos.pop();
-        v2pos.pop();
-    }
-    while (!v1neg.empty() && !v2neg.empty()) {
-        v1left.push(v1neg.top());
-        v2left.push(v2neg.top());
-        v1neg.pop();
-        v2neg.pop();
-    }
-    while (!v1left.empty() && !v2left.empty()) {
-        product = product + (llong)v1left.top() * (llong)v2left.top();
-        v1left.pop();
-        v2left.pop();
+    for (int i = 0; i < N; i++) {
+        product = product + v1[i] * v2[i];
     }
     cout << product << endl;
 
